@@ -72,7 +72,7 @@ TOPICS = [("Medicina Legal",)+t for t in ML] + [("Português",)+t for t in PT] +
 RECOVERY = {8: "Natal", 15: "Carnaval"}
 SIMULADO = {13: "Mini-simulado diagnóstico (40 q.) no domingo", 21: "Simulado 1 (100 q.) — domingo 07h–12h",
             23: "Simulado 2 (100 q.) — domingo 07h–12h", 25: "Simulado 3 (100 q.) — domingo 07h–12h"}
-TAF_WEEKS = {4, 8, 12, 16, 20, 24}
+TAF_WEEKS = set()  # TAF retirado do plano
 
 def short(code):
     for d,c,w,t in TOPICS:
@@ -149,3 +149,39 @@ GRADE = [  # dia, bloco, horário, disciplina, atividade
  ("Domingo","1","07:00–08:00","Português","Interpretação de textos FGV"),
  ("Domingo","2","08:00–09:00","Revisão","Revisão de 7 e 30 dias, caderno de erros, painel"),
 ]
+
+SHORT = {
+ "ML01":"Introdução, perícias e documentos","ML02":"Identificação","ML03":"Antropologia Forense",
+ "ML04":"Traumatologia I (agentes mecânicos)","ML05":"Traumatologia II (armas de fogo)","ML06":"Traumatologia III (físicos, químicos, idade da lesão)",
+ "ML07":"Asfixias I (sufocação e constrição do pescoço)","ML08":"Asfixias II (afogamento, soterramento, confinamento)",
+ "ML09":"Tanatologia I (diagnóstico e causa da morte)","ML10":"Tanatologia II (tempo de morte)","ML11":"Tanatologia III + Infortunística",
+ "ML12":"Toxicologia I (intoxicações)","ML13":"Toxicologia II (álcool e drogas)","ML14":"Sexologia I (crimes sexuais)",
+ "ML15":"Sexologia II (gravidez, aborto, infanticídio)","ML16":"Sexologia III (maus-tratos, DNA)","ML17":"Psiquiatria Forense","ML18":"Ética médica",
+ "PT01":"Texto e interpretação","PT02":"Ortografia e acentuação","PT03":"Classes de palavras","PT04":"Verbos",
+ "PT05":"Advérbio, preposição, conjunção e formação de palavras","PT06":"Semântica","PT07":"Termos da oração","PT08":"Coordenação e subordinação",
+ "PT09":"Concordância","PT10":"Regência","PT11":"Crase","PT12":"Colocação pronominal","PT13":"Pontuação","PT14":"Coesão textual",
+ "PT15":"Reescrita de frases I","PT16":"Reescrita de frases II e variação linguística",
+ "DI01":"Constitucional: direitos fundamentais I","DI02":"Constitucional: direitos fundamentais II","DI03":"Constitucional: Adm. Pública e servidores",
+ "DI04":"Constitucional: Executivo, Segurança Pública e Ordem social","DI05":"Penal: teoria do crime","DI06":"Penal: inimputabilidade e crimes contra a pessoa I",
+ "DI07":"Penal: crimes contra a pessoa II e contra a liberdade","DI08":"Penal: crimes sexuais e contra a Adm. Pública",
+ "DI09":"Proc. Penal: inquérito e polícia judiciária","DI10":"Proc. Penal: prova pericial e cadeia de custódia",
+ "DI11":"Leis: tortura, abuso de autoridade e racismo","DI12":"Leis: drogas e ECA","DI13":"Leis: Maria da Penha, Idoso e PcD",
+ "DI14":"Administrativo: organização e ato administrativo","DI15":"Administrativo: poderes, agentes e responsabilidade",
+ "DI16":"Estatuto dos servidores do RJ","DI17":"Estatuto dos policiais civis do RJ",
+}
+PHASE2_SHORT = {
+ 21:("Questões: Traumatologia e Asfixias","Questões: interpretação, concordância e regência","Questões: Constitucional e Penal"),
+ 22:("Questões: Tanatologia e Toxicologia","Questões: sintaxe, pontuação e crase","Questões: Proc. Penal e leis especiais"),
+ 23:("Questões: Sexologia e Psiquiatria","Questões: coesão e reescrita","Questões: Administrativo e estatutos"),
+ 24:("Questões: Identificação, Antropologia, Ética + seus erros","Questões mistas","Questões mistas + lei seca"),
+ 25:("Revisão final (resumos e flashcards)","Revisão do caderno de erros","Lei seca: trechos grifados"),
+}
+def week_short(n):
+    """(ML, PT, DI) em linguagem curta para a semana n."""
+    if n in RECOVERY: return ("Semana leve: revisão e atrasos",)*3
+    if n == 26: return ("Revisões leves (sem conteúdo novo)",)*3
+    if n in PHASE2_SHORT: return PHASE2_SHORT[n]
+    out = []
+    for lst, extra in ((ML, {}), (PT, {19:"Interpretação de textos FGV", 20:"Revisão de gramática (caderno de erros)"}), (DI, {20:"Questões mistas de Direito"})):
+        x = by_week(lst, n); out.append(SHORT[x[0][0]] if x else extra.get(n, ""))
+    return tuple(out)

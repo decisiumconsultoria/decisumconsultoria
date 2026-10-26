@@ -32,7 +32,7 @@ body = f'''<div class="wrap">
   </div>
 </header>
 <nav class="index" aria-label="Seções">
-  <a href="#diagnostico">1 Diagnóstico</a><a href="#semana">2 Semana</a><a href="#ciclo">3 Imprevistos</a><a href="#conteudo">4 Plano por semana</a><a href="#revisao">5 Revisão e questões</a><a href="#materiais">6 Materiais</a><a href="#taf">TAF</a><a href="#pendencias">Pendências</a>
+  <a href="#diagnostico">1 Diagnóstico</a><a href="#semana">2 Semana</a><a href="#ciclo">3 Imprevistos</a><a href="#conteudo">4 Plano por semana</a><a href="#revisao">5 Revisão e questões</a><a href="#materiais">6 Materiais</a><a href="#pendencias">Pendências</a>
 </nav>
 
 <section id="diagnostico"><span class="sec-num">1</span><h2>Diagnóstico inicial</h2>
@@ -40,7 +40,7 @@ body = f'''<div class="wrap">
  <div class="fact"><div class="v mono">10h</div><div class="l">por semana: 5 dias × 2h (07h–09h, 2 blocos de 1h)</div></div>
  <div class="fact"><div class="v mono">26 sem.</div><div class="l">cerca de 255 h no total, com 2 semanas de recuperação</div></div>
  <div class="fact"><div class="v mono">100 q.</div><div class="l">ML 50 · Port 30 · Dir 20. Mínimo de 50% em cada módulo</div></div>
- <div class="fact"><div class="v mono">Top 300</div><div class="l">vão ao TAF (195 vagas na ampla concorrência) para 25 vagas</div></div>
+ <div class="fact"><div class="v mono">Top 300</div><div class="l">seguem para as próximas etapas, para 25 vagas</div></div>
 </div>
 <p>Estuda na segunda, quarta, quinta, sexta e domingo, das 07h às 09h. Terça e sábado são dias de plantão. Nível atual: zero em Medicina Legal pericial e em Direito, Português com nota 1–2 e Ética médica com nota 2. É o primeiro concurso.</p>
 <div class="tbl mid"><table>
@@ -52,7 +52,7 @@ body = f'''<div class="wrap">
 </tbody></table></div>
 <div class="note"><p><strong>Com 2h por dia, o plano é possível, mas apertado.</strong> A 1ª leitura do edital termina só na semana 20, e sobram 5 semanas de questões e simulados. Direito fica em nível de "noções".</p>
 <p>Para ter mais margem: (a) estender o horizonte para 9–12 meses mantendo as 2h, o mais realista enquanto não há edital; ou (b) subir para 3h em 2 dias da semana, o que antecipa a 1ª leitura para cerca da semana 15.</p>
-<p>Outros riscos: ainda não há edital publicado (conteúdo e data podem mudar), não há nenhum dia totalmente livre e o TAF ainda não foi avaliado.</p></div>
+<p>Outros riscos: ainda não há edital publicado (conteúdo e data podem mudar) e não há nenhum dia totalmente livre.</p></div>
 </section>
 
 <section id="semana"><span class="sec-num">2</span><h2>Distribuição semanal</h2>
@@ -103,21 +103,14 @@ body = f'''<div class="wrap">
 
 <section id="materiais"><span class="sec-num">6</span><h2>Materiais da mentoria</h2>
 <div class="tbl mid"><table><thead><tr><th>Material</th><th>Uso</th></tr></thead><tbody>
-<tr><td><b>Guia da Aluna</b> (PDF)</td><td>Como estudar cada bloco, o ritual de domingo, revisões, simulados, regras de atraso e TAF. Ler antes da semana 1.</td></tr>
-<tr><td><b>Cronograma de 26 semanas</b> (PDF)</td><td>O que estudar em cada semana. Consultar todo domingo.</td></tr>
-<tr><td><b>Planilha de estudos</b> (Excel)</td><td>Registro diário, checklist do edital com datas de revisão automáticas, caderno de erros, simulados, TAF e painel com alertas.</td></tr>
-<tr><td><b>Checklists</b> (PDF)</td><td>Folha semanal (imprimir 26 vezes), domingo, mês, simulado, edital publicado, semana e dia da prova, e checklist dos 51 tópicos.</td></tr>
+<tr><td><b>Guia da Aluna</b> (PDF, 7 páginas)</td><td>Para ler: o plano em uma página, o dia em 3 passos, como fazer cada bloco, o domingo, as revisões, o conteúdo das 26 semanas e os checklists.</td></tr>
+<tr><td><b>Planilha de estudos</b> (Excel)</td><td>Para preencher, 2 minutos por dia. Os dias e o conteúdo de cada bloco já vêm prontos: ela só marca ✓ e anota questões e acertos. A planilha avisa as revisões e mostra a cor da semana (🟢 🟡 🔴).</td></tr>
 </tbody></table></div>
-</section>
-
-<section id="taf"><span class="sec-num">Extra</span><h2>Teste de Aptidão Física</h2>
-<p>Índices femininos do edital de 2021, com uma única tentativa em cada teste: 15 flexões de braço em 1 min · 20 abdominais em 1 min · 100 m em até 22 s · 1.600 m em até 12 min. Treino 3 vezes por semana à tarde. Testes nas semanas 4, 8, 12, 16, 20 e 24.</p>
 </section>
 
 <section id="pendencias"><span class="sec-num">Pendências</span><h2>A confirmar com a Patrícia</h2>
 <ol><li>Os plantões de terça e sábado são diurnos, noturnos ou de 24h?</li>
 <li>Qual material teórico e qual plataforma de questões ela vai usar?</li>
-<li>Como está o condicionamento físico e quais tardes estão livres para treinar?</li>
 <li>Prefere manter 2h com horizonte maior ou aumentar a carga em alguns dias?</li></ol>
 </section>
 <footer>Plano elaborado a partir do Edital nº 05/2021 da SEPOL/RJ (retificado em 10/05/2022). Revisar quando o novo edital for publicado.</footer>
