@@ -53,11 +53,12 @@ txt = [
  ("2. Ao terminar a teoria de um tópico: aba 'Edital' → marque 'Teoria concluída = Sim' e a data do 1º estudo. As datas das revisões (24h, 7 e 30 dias) aparecem sozinhas.", None),
  ("3. Errou uma questão importante ou chutou e acertou: aba 'Caderno de erros' → uma linha. A data de revisão aparece sozinha.", None),
  ("4. Domingo, no bloco de revisão: abra 'Painel semanal' e leia a coluna ALERTA da semana. Faça as revisões marcadas como PENDENTE na aba 'Edital'. Marque o status da semana na aba 'Cronograma'.", None),
- ("5. Simulados: aba 'Simulados'. Teste físico: aba 'TAF'.", None),
+ ("5. Simulados: aba 'Simulados'. Teste físico: aba 'TAF'. Ao fim de cada dia: marque os blocos feitos na aba 'Checklist semanal'.", None),
  ("", None),
  ("ABAS", None),
  ("Grade semanal — horários fixos de cada dia (07h–09h).", None),
  ("Cronograma — o que estudar em cada uma das 26 semanas, metas de questões, revisões e simulados.", None),
+ ("Checklist semanal — marque cada bloco feito, os flashcards e o ritual de domingo. Substitui a folha impressa.", None),
  ("Edital — os 51 tópicos do edital com checklist, datas de revisão, questões e % de acerto por tópico.", None),
  ("Registro diário — seu diário de estudo. É daqui que saem todos os números do painel.", None),
  ("Painel semanal — horas planejadas x executadas, questões, acerto por disciplina, % do edital e alertas.", None),
@@ -71,6 +72,7 @@ txt = [
  ("• Revisões pendentes há mais de 1 semana → o próximo bloco de domingo é só revisão.", None),
  ("", None),
  ("Os tópicos seguem o Anexo I do edital de 2021. Quando sair o novo edital, a mentora atualiza a aba 'Edital'.", None),
+ ("Dúvidas sobre COMO estudar (blocos, revisões, simulados, atrasos, checklists): consulte o GUIA DA ALUNA (PDF). Esta planilha e o guia são os únicos materiais da mentoria.", None),
 ]
 r = 4
 for t, fill in txt:
@@ -121,6 +123,26 @@ put(ws, 32, 8, "=SUM(H5:H30)", font=bold, align=center)
 ws.conditional_formatting.add("L5:L30", CellIsRule(operator="equal", formula=['"Concluída"'], fill=PatternFill("solid", fgColor="CDEBD9")))
 ws.conditional_formatting.add("L5:L30", CellIsRule(operator="equal", formula=['"Atrasada"'], fill=PatternFill("solid", fgColor="F6D3CF")))
 ws.freeze_panes = "D5"
+
+
+# ---------- 2b. Checklist semanal ----------
+ws = sheet("Checklist semanal")
+ws["A1"] = "Checklist semanal · marque ✓ em cada bloco concluído"; ws["A1"].font = title
+ws["A2"] = "Bloco 1 = 07h–08h · Bloco 2 = 08h–09h. Terça e sábado são plantão. Na semana de simulado, os 2 blocos de domingo = simulado."; ws["A2"].font = sub
+cols = ["Semana","Datas","Seg B1","Seg B2","Qua B1","Qua B2","Qui B1","Qui B2","Sex B1","Sex B2","Dom B1","Dom B2","Blocos plan.","Blocos feitos","% feito","Dias com flashcards (0–5)","Ritual de domingo feito?","Print enviado à mentora?"]
+header(ws, 4, cols, [8,15,7,7,7,7,7,7,7,7,7,7,9,9,8,12,12,12])
+for i, w in enumerate(plano.WEEKS):
+    r = 5+i
+    put(ws, r, 1, f"S{w['n']}", align=center); put(ws, r, 2, w["datas"], align=center)
+    for c in range(3, 13): put(ws, r, c, None, fill=inp, align=center)
+    put(ws, r, 13, 5 if w["rec"] else (6 if w["n"]==26 else 10), align=center)
+    put(ws, r, 14, f'=COUNTIF(C{r}:L{r},"✓")', align=center)
+    put(ws, r, 15, f'=IF(N{r}=0,"",N{r}/M{r})', fmt="0%", align=center)
+    for c in (16,17,18): put(ws, r, c, None, fill=inp, align=center)
+dv_list(ws, '"✓"', "C5:L30"); dv_list(ws, '"0,1,2,3,4,5"', "P5:P30"); dv_list(ws, '"Sim,Não"', "Q5:R30")
+ws.conditional_formatting.add("C5:L30", CellIsRule(operator="equal", formula=['"✓"'], fill=PatternFill("solid", fgColor="CDEBD9")))
+ws.conditional_formatting.add("O5:O30", FormulaRule(formula=['AND(ISNUMBER(O5),O5<0.8)'], fill=PatternFill("solid", fgColor="F6D3CF")))
+ws.freeze_panes = "C5"
 
 # ---------- 3. Edital ----------
 ws = sheet("Edital")
